@@ -1,0 +1,44 @@
+[core]
+    autocrlf = false
+    excludesfile = "~/.gitignore_global"
+    editor = code --wait
+
+[user]
+	email = kampiopriv@protnmail.com
+	name = Kampio152
+
+[commit]
+	gpgsign = false
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+[pull]
+  rebase = true
+[rebase]
+  autoStash = true
+[tag]
+  gpgSign = true
+  forceSignAnnotated = true
+[alias]
+  # List all available aliases
+  alias = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+  # Pulls with rebase then pushes local commits
+  sync = !git pull -r && git push
+[pager]
+  branch = false
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
